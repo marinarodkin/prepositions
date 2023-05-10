@@ -11,12 +11,11 @@
 <button id="ok-button" onclick="checkAnswer()">OK</button>
 <div id="result"></div>
 <div id="score"></div>
+<div id="review"></div>
 
 <script>
-    // Your JSON data
     const data = getData()
 
-    // Shuffle the data
     for (let i = data.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [data[i], data[j]] = [data[j], data[i]];
@@ -29,26 +28,30 @@
     // Display the first question
     document.getElementById('question').textContent = data[currentQuestion].question;
 
+    var wrongAnswers = [];
+
     function checkAnswer() {
         var userInput = document.getElementById('user-input').value;
-        const resultDiv = document.getElementById('result')
+        const resultDiv = document.getElementById('result');
+
         if (userInput == data[currentQuestion].answer) {
             resultDiv.textContent = 'Right!';
             if (resultDiv.classList.contains('result-wrong')) {
-                resultDiv.classList.remove('result-wrong')
+                resultDiv.classList.remove('result-wrong');
             }
             if (!resultDiv.classList.contains('result-right')) {
-                resultDiv.classList.add('result-right')
+                resultDiv.classList.add('result-right');
             }
             correctAnswers++;
         } else {
             if (resultDiv.classList.contains('result-right')) {
-                resultDiv.classList.remove('result-right')
+                resultDiv.classList.remove('result-right');
             }
             if (!resultDiv.classList.contains('result-wrong')) {
-                resultDiv.classList.add('result-wrong')
+                resultDiv.classList.add('result-wrong');
             }
             resultDiv.textContent = 'Wrong. The correct preposition is ' + data[currentQuestion].answer + '.';
+            wrongAnswers.push(data[currentQuestion]);
         }
 
         totalAnswers++;
@@ -64,6 +67,13 @@
             document.getElementById('question').textContent = 'Game Over. Your final score is ' + correctAnswers + ' right, ' + incorrectAnswers + ' wrong.';
             document.getElementById('user-input').style.display = 'none';
             document.getElementById('ok-button').style.display = 'none';
+
+            let wrongAnswersList = '<h2>Review these sentences:</h2><ul>';
+            wrongAnswers.forEach(function (item) {
+                wrongAnswersList += '<li>' + item.question.replace('...', item.answer) + '</li>';
+            });
+            wrongAnswersList += '</ul>';
+            document.getElementById('review').innerHTML = wrongAnswersList;
         }
     }
 
