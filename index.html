@@ -67,6 +67,13 @@
         }
     }
 
+    document.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            checkAnswer();
+        }
+    });
+
+
     function getData() {
         return [
             {
@@ -661,7 +668,6 @@
                 "question": "Ich denke ... deine Worte nach.",
                 "answer": "über"
             },
-            [
                 {
                     "verb": "passen zu",
                     "question": "Blau passt nicht ... Grün.",
@@ -756,10 +762,283 @@
                     "verb": "sorgen (sich) um",
                     "question": "Ich sorge mich ... deine Sicherheit.",
                     "answer": "um"
-                }
-            ]
-
-    ]
+                },
+    {
+        "verb": "spielen mit",
+        "question": "Die Kinder spielen ... ihrem neuen Spielzeug.",
+        "answer": "mit"
+    },
+    {
+        "verb": "spielen mit",
+        "question": "Sie spielt gerne ... ihrem Hund.",
+        "answer": "mit"
+    },
+    {
+        "verb": "sprechen mit",
+        "question": "Ich möchte ... dem Manager sprechen.",
+        "answer": "mit"
+    },
+    {
+        "verb": "sprechen mit",
+        "question": "Er spricht ... seinem Freund über das Problem.",
+        "answer": "mit"
+    },
+    {
+        "verb": "sprechen über",
+        "question": "Wir sprechen ... die Ergebnisse des Projekts.",
+        "answer": "über"
+    },
+    {
+        "verb": "sprechen über",
+        "question": "Sie spricht oft ... ihre Reisen.",
+        "answer": "über"
+    },
+    {
+        "verb": "stimmen für",
+        "question": "Ich stimme ... das neue Gesetz.",
+        "answer": "für"
+    },
+    {
+        "verb": "stimmen für",
+        "question": "Sie stimmen ... die Erhöhung des Budgets.",
+        "answer": "für"
+    },
+    {
+        "verb": "streiten (sich) um",
+        "question": "Sie streiten sich ... das letzte Stück Kuchen.",
+        "answer": "um"
+    },
+    {
+        "verb": "streiten (sich) um",
+        "question": "Die Kinder streiten sich oft ... Spielzeug.",
+        "answer": "um"
+    },
+    {
+        "verb": "teilnehmen an",
+        "question": "Wir nehmen ... dem Marathon teil.",
+        "answer": "an"
+    },
+    {
+        "verb": "teilnehmen an",
+        "question": "Sie nimmt ... einem Kochkurs teil.",
+        "answer": "an"
+    },
+    {
+        "verb": "träumen von",
+        "question": "Ich träume ... einer Reise um die Welt.",
+        "answer": "von"
+    },
+    {
+        "verb": "träumen von",
+        "question": "Er träumt ... einem großen Haus.",
+        "answer": "von"
+    },
+    {
+        "verb": "überreden zu",
+        "question": "Sie versucht, mich ... einem Ausflug zu überreden.",
+        "answer": "zu"
+    },
+    {
+        "verb": "überreden zu",
+        "question": "Er wurde ... einem Verbrechen überredet.",
+        "answer": "zu"
+    },
+    {
+        "verb": "übersetzen in",
+        "question": "Kannst du das ... Englisch übersetzen?",
+        "answer": "in"
+    },
+    {
+        "verb": "übersetzen in",
+        "question": "Sie übersetzt den Text ... Spanisch.",
+        "answer": "in"
+    },
+    {
+        "verb": "überzeugen von",
+        "question": "Ich konnte ihn ... meiner Idee überzeugen.",
+        "answer": "von"
+    },
+    {
+        "verb": "überzeugen von",
+        "question": "Sie ist ... seinem Plan nicht überzeugt.",
+        "answer": "von"
+    },
+    {
+        "verb": "unterhalten (sich) mit",
+        "question": "Ich unterhalte mich gerne ... meinen Freunden.",
+        "answer": "mit"
+    },
+    {
+        "verb": "unterhalten (sich) mit",
+        "question": "Er unterhält sich ... dem Gast.",
+        "answer": "mit"
+    },
+    {
+        "verb": "unterhalten (sich) über",
+        "question": "Sie unterhalten sich ... Politik.",
+        "answer": "über"
+    },
+    {
+        "verb": "unterhalten (sich) über",
+        "question": "Wir haben uns ... das neue Buch unterhalten.",
+        "answer": "über"
+    },
+    {
+        "verb": "unterscheiden von",
+        "question": "Diese Art unterscheidet sich ... der anderen.",
+        "answer": "von"
+    },
+    {
+        "verb": "unterscheiden von",
+        "question": "Sein Stil unterscheidet sich deutlich ... dem herkömmlichen.",
+        "answer": "von"
+    },
+    {
+        "verb": "verabreden (sich) mit",
+        "question": "Ich habe mich ... meinen Freunden im Café verabredet.",
+        "answer": "mit"
+    },
+    {
+        "verb": "verabreden (sich) mit",
+        "question": "Sie hat sich ... ihm zum Abendessen verabredet.",
+        "answer": "mit"
+    },
+    {
+        "verb": "verabschieden von",
+        "question": "Ich muss mich ... dir verabschieden.",
+        "answer": "von"
+    },
+    {
+        "verb": "verabschieden von",
+        "question": "Sie hat sich ... ihren Kollegen verabschiedet.",
+        "answer": "von"
+    },
+    {
+        "verb": "vergleichen mit",
+        "question": "Du kannst das nicht ... dem vorherigen Fall vergleichen.",
+        "answer": "mit"
+    },
+    {
+        "verb": "vergleichen mit",
+        "question": "Er vergleicht seinen Erfolg ... dem seines Bruders.",
+        "answer": "mit"
+    },
+    {
+        "verb": "verkaufen an",
+        "question": "Wir verkaufen unsere Produkte ... Kunden weltweit.",
+        "answer": "an"
+    },
+    {
+        "verb": "verkaufen an",
+        "question": "Sie verkaufen das Auto ... einen Freund.",
+        "answer": "an"
+    },
+    {
+        "verb": "verlassen (sich) auf",
+        "question": "Du kannst dich ... mich verlassen.",
+        "answer": "auf"
+    },
+    {
+        "verb": "verlassen (sich) auf",
+        "question": "Ich verlasse mich ... meine Intuition.",
+        "answer": "auf"
+    },
+    {
+        "verb": "verlieben (sich) in",
+        "question": "Er hat sich ... sie verliebt.",
+        "answer": "in"
+    },
+    {
+        "verb": "verlieben (sich) in",
+        "question": "Ich habe mich ... diese Stadt verliebt.",
+        "answer": "in"
+    },
+    {
+        "verb": "verstehen (sich) mit",
+        "question": "Ich verstehe mich gut ... meinen Kollegen.",
+        "answer": "mit"
+    },
+  {
+    "verb": "verzichten auf",
+    "question": "Ich verzichte ... Süßigkeiten.",
+    "answer": "auf"
+  },
+  {
+    "verb": "verzichten auf",
+    "question": "Er verzichtet ... sein Recht zu sprechen.",
+    "answer": "auf"
+  },
+  {
+    "verb": "warnen vor",
+    "question": "Ich warne dich ... den Gefahren des Rauchens.",
+    "answer": "vor"
+  },
+  {
+    "verb": "warnen vor",
+    "question": "Die Regierung warnt ... Reisen in das betroffene Gebiet.",
+    "answer": "vor"
+  },
+  {
+    "verb": "warten auf",
+    "question": "Wir warten ... den Bus.",
+    "answer": "auf"
+  },
+  {
+    "verb": "warten auf",
+    "question": "Sie wartet ... eine Nachricht von ihm.",
+    "answer": "auf"
+  },
+  {
+    "verb": "wenden (sich) an",
+    "question": "Wenn Sie Fragen haben, wenden Sie sich bitte ... den Kundenservice.",
+    "answer": "an"
+  },
+  {
+    "verb": "wenden (sich) an",
+    "question": "Er hat sich ... einen Anwalt gewendet.",
+    "answer": "an"
+  },
+  {
+    "verb": "wissen über",
+    "question": "Ich weiß nichts ... seine Vergangenheit.",
+    "answer": "über"
+  },
+  {
+    "verb": "wissen über",
+    "question": "Was wissen Sie ... die aktuellen Ereignisse?",
+    "answer": "über"
+  },
+  {
+    "verb": "wundern (sich) über",
+    "question": "Ich wundere mich ... sein Verhalten.",
+    "answer": "über"
+  },
+  {
+    "verb": "wundern (sich) über",
+    "question": "Er wundert sich ... die schnelle Veränderung.",
+    "answer": "über"
+  },
+  {
+    "verb": "zählen zu",
+    "question": "Er zählt ... den besten Spielern.",
+    "answer": "zu"
+  },
+  {
+    "verb": "zählen zu",
+    "question": "Diese Art zählt ... den bedrohten Arten.",
+    "answer": "zu"
+  },
+  {
+    "verb": "zunehmen an",
+    "question": "Die Stadt hat ... Bevölkerung zugenommen.",
+    "answer": "an"
+  },
+  {
+    "verb": "zunehmen an",
+    "question": "Die Spannungen haben ... Intensität zugenommen.",
+    "answer": "an"
+  }
+]
     }
 </script>
 </body>
