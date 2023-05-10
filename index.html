@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learn German Prepositions</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div id="question"></div>
+<input id="user-input" type="text" placeholder="Your preposition here">
+<button id="ok-button" onclick="checkAnswer()">OK</button>
+<div id="result"></div>
+<div id="score"></div>
+
+<script>
+    // Your JSON data
+    const data = getData()
+
+    // Shuffle the data
+    for (let i = data.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [data[i], data[j]] = [data[j], data[i]];
+    }
+
+    var currentQuestion = 0;
+    var correctAnswers = 0;
+    var totalAnswers = 0;
+
+    // Display the first question
+    document.getElementById('question').textContent = data[currentQuestion].question;
+
+    function checkAnswer() {
+        var userInput = document.getElementById('user-input').value;
+        const resultDiv = document.getElementById('result')
+        if (userInput == data[currentQuestion].answer) {
+            resultDiv.textContent = 'Right!';
+            if (resultDiv.classList.contains('result-wrong')) {
+                resultDiv.classList.remove('result-wrong')
+            }
+            if (!resultDiv.classList.contains('result-right')) {
+                resultDiv.classList.add('result-right')
+            }
+            correctAnswers++;
+        } else {
+            if (resultDiv.classList.contains('result-right')) {
+                resultDiv.classList.remove('result-right')
+            }
+            if (!resultDiv.classList.contains('result-wrong')) {
+                resultDiv.classList.add('result-wrong')
+            }
+            resultDiv.textContent = 'Wrong. The correct preposition is ' + data[currentQuestion].answer + '.';
+        }
+
+        totalAnswers++;
+        var incorrectAnswers = totalAnswers - correctAnswers;
+        document.getElementById('score').textContent = 'Score: ' + correctAnswers + ' right, ' + incorrectAnswers + ' wrong.';
+
+        // Go to the next question or end the game if 10 questions have been answered
+        if (totalAnswers < 10) {
+            currentQuestion++;
+            document.getElementById('question').textContent = data[currentQuestion].question;
+            document.getElementById('user-input').value = '';
+        } else {
+            document.getElementById('question').textContent = 'Game Over. Your final score is ' + correctAnswers + ' right, ' + incorrectAnswers + ' wrong.';
+            document.getElementById('user-input').style.display = 'none';
+            document.getElementById('ok-button').style.display = 'none';
+        }
+    }
+
+    function getData() {
+        return [
+            {
+                "verb": "abhängen von",
+                "question": "Dein Erfolg hängt ... deinem Fleiß ab.",
+                "answer": "von"
+            },
+            {
+                "verb": "abhängen von",
+                "question": "Die Entscheidung hängt ... den Umständen ab.",
+                "answer": "von"
+            },
+            {
+                "verb": "abraten von",
+                "question": "Ich rate dir ... diesem Plan ab.",
+                "answer": "von"
+            },
+            {
+                "verb": "abraten von",
+                "question": "Der Arzt hat mir ... der Operation abgeraten.",
+                "answer": "von"
+            },
+            {
+                "verb": "achten auf",
+                "question": "Du solltest ... deine Gesundheit achten.",
+                "answer": "auf"
+            },
+            {
+                "verb": "achten auf",
+                "question": "Wir müssen ... die Umwelt achten.",
+                "answer": "auf"
+            },
+            {
+                "verb": "anfangen mit",
+                "question": "Ich fange ... dem Aufräumen an.",
+                "answer": "mit"
+            },
+            {
+                "verb": "anfangen mit",
+                "question": "Wir fangen ... dem Training an.",
+                "answer": "mit"
+            },
+            {
+                "verb": "Angst haben vor",
+                "question": "Ich habe Angst ... Spinnen.",
+                "answer": "vor"
+            },
+            {
+                "verb": "Angst haben vor",
+                "question": "Sie hat Angst ... dem Zahnarzt.",
+                "answer": "vor"
+            },
+            {
+                "verb": "ankommen auf",
+                "question": "Es kommt ... die richtige Einstellung an.",
+                "answer": "auf"
+            },
+            {
+                "verb": "ankommen auf",
+                "question": "Bei der Prüfung kommt es ... das Wissen an.",
+                "answer": "auf"
+            },
+            {
+                "verb": "arbeiten an",
+                "question": "Ich arbeite ... einem neuen Projekt.",
+                "answer": "an"
+            },
+            {
+                "verb": "arbeiten an",
+                "question": "Sie arbeitet ... ihrer Doktorarbeit.",
+                "answer": "an"
+            },
+            {
+                "verb": "ärgern (sich) über",
+                "question": "Ich ärgere mich ... meine Fehler.",
+                "answer": "über"
+            },
+            {
+                "verb": "ärgern (sich) über",
+                "question": "Er ärgert sich ... den verpassten Zug.",
+                "answer": "über"
+            },
+            {
+                "verb": "aufhören mit",
+                "question": "Du solltest ... dem Rauchen aufhören.",
+                "answer": "mit"
+            },
+            {
+                "verb": "aufhören mit",
+                "question": "Ich höre ... dem Lernen auf.",
+                "answer": "mit"
+            },
+            {
+                "verb": "aufpassen auf",
+                "question": "Bitte pass ... deine Sachen auf.",
+                "answer": "auf"
+            },
+            {
+                "verb": "aufpassen auf",
+                "question": "Sie passt ... die Kinder auf.",
+                "answer": "auf"
+            },
+            {
+                "verb": "ausruhen (sich)",
+                "question": "Ich ruhe mich ... dem Sofa aus.",
+                "answer": "auf"
+            },
+            {
+                "verb": "ausruhen (sich)",
+                "question": "Er ruht sich ... dem Bett aus.",
+                "answer": "auf"
+            },
+            {
+                "verb": "bedanken (sich) für",
+                "question": "Ich bedanke mich ... das Geschenk.",
+                "answer": "für"
+            },
+            {
+                "verb": "bedanken (sich) für",
+                "question": "Sie bedankt sich ... die Hilfe.",
+                "answer": "für"
+            },
+            {
+                "verb": "beginnen mit",
+                "question": "Wir beginnen ... dem Unterricht.",
+                "answer": "mit"
+            },
+            {
+                "verb": "beginnen mit",
+                "question": "Ich beginne ... dem Training.",
+                "answer": "mit"
+            },
+            {
+                "verb": "beklagen (sich)",
+                "question": "Er beklagt sich ... die Arbeitsbedingungen.",
+                "answer": "über"
+            },
+            {
+                "verb": "beklagen (sich)",
+                "question": "Sie beklagt sich ... das Wetter.",
+                "answer": "über"
+            },
+            {
+                "verb": "beneiden um",
+                "question": "Ich beneide ihn ... seinen Erfolg.",
+                "answer": "um"
+            },
+            {
+                "verb": "beneiden um",
+                "question": "Sie beneidet sie ... ihre Schönheit.",
+                "answer": "um"
+            },
+            {
+                "verb": "beschäftigen (sich) mit",
+                "question": "Er beschäftigt sich ... Geschichte.",
+                "answer": "mit"
+            },
+            {
+                "verb": "beschäftigen (sich) mit",
+                "question": "Ich beschäftige mich ... Kunst.",
+                "answer": "mit"
+            },
+            {
+                "verb": "beschweren (sich) über",
+                "question": "Ich beschwere mich ... den Lärm.",
+                "answer": "über"
+            },
+            {
+                "verb": "beschweren (sich) über",
+                "question": "Sie beschwert sich ... die Verspätung.",
+                "answer": "über"
+            },
+            {
+                "verb": "bestehen aus",
+                "question": "Das Team besteht ... fünf Personen.",
+                "answer": "aus"
+            },
+            {
+                "verb": "bestehen aus",
+                "question": "Das Menü besteht ... drei Gängen.",
+                "answer": "aus"
+            },
+            // Continuing from the last set...
+            {
+                "verb": "bestehen auf",
+                "question": "Er besteht ... seinem Standpunkt.",
+                "answer": "auf"
+            },
+            {
+                "verb": "bestehen auf",
+                "question": "Ich bestehe ... meiner Meinung.",
+                "answer": "auf"
+            },
+            {
+                "verb": "beteiligen an",
+                "question": "Sie beteiligt sich ... dem Projekt.",
+                "answer": "an"
+            },
+            {
+                "verb": "beteiligen an",
+                "question": "Wir beteiligen uns ... der Demonstration.",
+                "answer": "an"
+            },
+            {
+                "verb": "betrachten als",
+                "question": "Ich betrachte ihn ... meinen Freund.",
+                "answer": "als"
+            },
+            {
+                "verb": "betrachten als",
+                "question": "Sie betrachtet das ... eine Chance.",
+                "answer": "als"
+            },
+            {
+                "verb": "bewerben (sich)",
+                "question": "Er bewirbt sich ... die Stelle.",
+                "answer": "um"
+            },
+            {
+                "verb": "bewerben (sich)",
+                "question": "Ich bewerbe mich ... den Job.",
+                "answer": "um"
+            },
+            {
+                "verb": "beziehen (sich)",
+                "question": "Das bezieht sich ... das Thema.",
+                "answer": "auf"
+            },
+            {
+                "verb": "beziehen (sich)",
+                "question": "Ihre Bemerkung bezieht"
+            },
+            // Continuing from the last set...
+            {
+                "verb": "bestehen auf",
+                "question": "Er besteht ... seinem Standpunkt.",
+                "answer": "auf"
+            },
+            {
+                "verb": "bestehen auf",
+                "question": "Ich bestehe ... meiner Meinung.",
+                "answer": "auf"
+            },
+            {
+                "verb": "beteiligen an",
+                "question": "Sie beteiligt sich ... dem Projekt.",
+                "answer": "an"
+            },
+            {
+                "verb": "beteiligen an",
+                "question": "Wir beteiligen uns ... der Demonstration.",
+                "answer": "an"
+            },
+            {
+                "verb": "betrachten als",
+                "question": "Ich betrachte ihn ... meinen Freund.",
+                "answer": "als"
+            },
+            {
+                "verb": "betrachten als",
+                "question": "Sie betrachtet das ... eine Chance.",
+                "answer": "als"
+            },
+            {
+                "verb": "bewerben (sich)",
+                "question": "Er bewirbt sich ... die Stelle.",
+                "answer": "um"
+            },
+            {
+                "verb": "bewerben (sich)",
+                "question": "Ich bewerbe mich ... den Job.",
+                "answer": "um"
+            },
+            {
+                "verb": "beziehen (sich)",
+                "question": "Das bezieht sich ... das Thema.",
+                "answer": "auf"
+            },
+            {
+                "verb": "beziehen (sich)",
+                "question": "Ihre Bemerkung bezieht sich ... den Vorfall.",
+                "answer": "auf"
+            },
+            {
+                "verb": "bitten um",
+                "question": "Ich bitte dich ... Hilfe.",
+                "answer": "um"
+            },
+            {
+                "verb": "bitten um",
+                "question": "Sie bittet ... Verständnis.",
+                "answer": "um"
+            },
+            {
+                "verb": "denken an",
+                "question": "Ich denke ... dich.",
+                "answer": "an"
+            },
+            {
+                "verb": "denken an",
+                "question": "Sie denkt oft ... ihre Kindheit.",
+                "answer": "an"
+            },
+            {
+                "verb": "denken über",
+                "question": "Was denkst du ... das Thema?",
+                "answer": "über"
+            },
+            {
+                "verb": "denken über",
+                "question": "Er denkt nach ... seiner Zukunft.",
+                "answer": "über"
+            },
+                {
+                    "verb": "eignen (sich) für",
+                    "question": "Das Buch eignet sich ... Anfänger.",
+                    "answer": "für"
+                },
+                {
+                    "verb": "eignen (sich) für",
+                    "question": "Sie eignet sich ... diese Arbeit.",
+                    "answer": "für"
+                },
+                {
+                    "verb": "einigen (sich) mit",
+                    "question": "Wir einigen uns ... dem Chef.",
+                    "answer": "mit"
+                },
+                {
+                    "verb": "einigen (sich) mit",
+                    "question": "Kannst du dich ... ihm einigen?",
+                    "answer": "mit"
+                },
+                {
+                    "verb": "einladen zu",
+                    "question": "Ich lade dich ... einer Party ein.",
+                    "answer": "zu"
+                },
+                {
+                    "verb": "einladen zu",
+                    "question": "Er lädt uns ... seinem Geburtstag ein.",
+                    "answer": "zu"
+                },
+                {
+                    "verb": "einverstanden sein mit",
+                    "question": "Bist du ... dem Plan einverstanden?",
+                    "answer": "mit"
+                },
+                {
+                    "verb": "einverstanden sein mit",
+                    "question": "Sie ist ... den Bedingungen einverstanden.",
+                    "answer": "mit"
+                },
+                {
+                    "verb": "entscheiden (sich) für",
+                    "question": "Ich entscheide mich ... den roten Pullover.",
+                    "answer": "für"
+                },
+                {
+                    "verb": "entscheiden (sich) für",
+                    "question": "Er entscheidet sich ... den neuen Job.",
+                    "answer": "für"
+                },
+                {
+                    "verb": "entschließen (sich) zu",
+                    "question": "Er hat sich ... einem Schritt entschlossen.",
+                    "answer": "zu"
+                },
+                {
+                    "verb": "entschließen (sich) zu",
+                    "question": "Wir haben uns ... einer Reise entschlossen.",
+                    "answer": "zu"
+                },
+                {
+                    "verb": "erinnern (sich) an",
+                    "question": "Erinnert ihr euch ... den letzten Sommer?",
+                    "answer": "an"
+                },
+                {
+                    "verb": "erinnern (sich) an",
+                    "question": "Ich erinnere mich ... unsere Kindheit.",
+                    "answer": "an"
+                },
+                {
+                    "verb": "erzählen von",
+                    "question": "Er erzählt ... seinen Abenteuern.",
+                    "answer": "von"
+                },
+                {
+                    "verb": "erzählen von",
+                    "question": "Kannst du mir ... deinem Tag erzählen?",
+                    "answer": "von"
+                },
+                {
+                    "verb": "folgen auf",
+                    "question": "Der Winter folgt ... den Herbst.",
+                    "answer": "auf"
+                },
+                {
+                    "verb": "folgen auf",
+                    "question": "Die Nacht folgt ... den Tag.",
+                    "answer": "auf"
+                },
+                {
+                    "verb": "fragen nach",
+                    "question": "Sie fragt ... der Adresse.",
+                    "answer": "nach"
+                },
+            {
+                "verb": "freuen (sich) auf",
+                "question": "Ich freue mich ... das Wochenende.",
+                "answer": "auf"
+            },
+            {
+                "verb": "freuen (sich) auf",
+                "question": "Sie freut sich ... den Urlaub.",
+                "answer": "auf"
+            },
+            {
+                "verb": "freuen (sich) über",
+                "question": "Er freut sich ... das Geschenk.",
+                "answer": "über"
+            },
+            {
+                "verb": "freuen (sich) über",
+                "question": "Wir freuen uns ... die gute Nachricht.",
+                "answer": "über"
+            },
+            {
+                "verb": "fürchten (sich) vor",
+                "question": "Sie fürchtet sich ... Spinnen.",
+                "answer": "vor"
+            },
+            {
+                "verb": "fürchten (sich) vor",
+                "question": "Ich fürchte mich ... großen Hunden.",
+                "answer": "vor"
+            },
+            {
+                "verb": "gehören zu",
+                "question": "Diese Bücher gehören ... der Schule.",
+                "answer": "zu"
+            },
+            {
+                "verb": "gehören zu",
+                "question": "Er gehört ... unserem Team.",
+                "answer": "zu"
+            },
+            {
+                "verb": "gewöhnen (sich) an",
+                "question": "Es ist schwer, sich ... das kalte Wetter zu gewöhnen.",
+                "answer": "an"
+            },
+            {
+                "verb": "gewöhnen (sich) an",
+                "question": "Ich gewöhne mich langsam ... das neue Haus.",
+                "answer": "an"
+            },
+            {
+                "verb": "gratulieren zu",
+                "question": "Ich gratuliere dir ... deinem Geburtstag.",
+                "answer": "zu"
+            },
+            {
+                "verb": "gratulieren zu",
+                "question": "Wir gratulieren ... dem Erfolg.",
+                "answer": "zu"
+            },
+            {
+                "verb": "grüßen von",
+                "question": "Grüße ... deiner Mutter.",
+                "answer": "von"
+            },
+            {
+                "verb": "grüßen von",
+                "question": "Er grüßt ... seinen Freunden.",
+                "answer": "von"
+            },
+            {
+                "verb": "viel/nichts halten von",
+                "question": "Ich halte viel ... ihrer Arbeit.",
+                "answer": "von"
+            },
+            {
+                "verb": "viel/nichts halten von",
+                "question": "Er hält nichts ... dieser Idee.",
+                "answer": "von"
+            },
+            {
+                "verb": "halten für",
+                "question": "Sie hält ihn ... einen Experten.",
+                "answer": "für"
+            },
+            // Continuing from the last set...
+            {
+                "verb": "helfen bei",
+                "question": "Kannst du mir ... den Hausaufgaben helfen?",
+                "answer": "bei"
+            },
+            {
+                "verb": "helfen bei",
+                "question": "Er hilft ihr ... der Reparatur.",
+                "answer": "bei"
+            },
+            {
+                "verb": "interessieren (sich) für",
+                "question": "Ich interessiere mich ... Kunst.",
+                "answer": "für"
+            },
+            {
+                "verb": "interessieren (sich) für",
+                "question": "Er interessiert sich ... Geschichte.",
+                "answer": "für"
+            },
+            {
+                "verb": "interessiert sein an",
+                "question": "Bist du ... diesem Buch interessiert?",
+                "answer": "an"
+            },
+            {
+                "verb": "interessiert sein an",
+                "question": "Sie ist sehr interessiert ... deinem Projekt.",
+                "answer": "an"
+            },
+            {
+                "verb": "kümmern (sich) um",
+                "question": "Ich kümmere mich ... die Pflanzen.",
+                "answer": "um"
+            },
+            {
+                "verb": "kümmern (sich) um",
+                "question": "Du solltest dich ... deine Gesundheit kümmern.",
+                "answer": "um"
+            },
+            {
+                "verb": "lachen über",
+                "question": "Wir lachen ... den Witz.",
+                "answer": "über"
+            },
+            {
+                "verb": "lachen über",
+                "question": "Sie lacht ... die komische Situation.",
+                "answer": "über"
+            },
+            {
+                "verb": "leicht fallen",
+                "question": "Es fällt mir leicht, ... neue Sprachen zu lernen.",
+                "answer": ""
+            },
+            {
+                "verb": "leicht fallen",
+                "question": "Ihm fällt es leicht, ... in der Öffentlichkeit zu sprechen.",
+                "answer": ""
+            },
+            {
+                "verb": "leiden an",
+                "question": "Er leidet ... einer seltenen Krankheit.",
+                "answer": "an"
+            },
+            {
+                "verb": "leiden an",
+                "question": "Sie leidet ... Schlaflosigkeit.",
+                "answer": "an"
+            },
+            {
+                "verb": "leiden unter",
+                "question": "Viele Menschen leiden ... Stress.",
+                "answer": "unter"
+            },
+            {
+                "verb": "leiden unter",
+                "question": "Er leidet ... der Hitze.",
+                "answer": "unter"
+            },
+            {
+                "verb": "liefern an",
+                "question": "Wir liefern ... Kunden in ganz Europa.",
+                "answer": "an"
+            },
+            {
+                "verb": "liefern an",
+                "question": "Sie liefern ... alle Großstädte.",
+                "answer": "an"
+            },
+            {
+                "verb": "nachdenken über",
+                "question": "Er denkt ... seine Zukunft nach.",
+                "answer": "über"
+            },
+            {
+                "verb": "nachdenken über",
+                "question": "Ich denke ... deine Worte nach.",
+                "answer": "über"
+            },
+            [
+                {
+                    "verb": "passen zu",
+                    "question": "Blau passt nicht ... Grün.",
+                    "answer": "zu"
+                },
+                {
+                    "verb": "passen zu",
+                    "question": "Deine Ideen passen nicht ... der Unternehmensphilosophie.",
+                    "answer": "zu"
+                },
+                {
+                    "verb": "protestieren gegen",
+                    "question": "Die Menschen protestieren ... die neue Politik.",
+                    "answer": "gegen"
+                },
+                {
+                    "verb": "protestieren gegen",
+                    "question": "Sie protestieren ... die Diskriminierung.",
+                    "answer": "gegen"
+                },
+                {
+                    "verb": "demonstrieren für",
+                    "question": "Die Studenten demonstrieren ... bessere Bildung.",
+                    "answer": "für"
+                },
+                {
+                    "verb": "demonstrieren für",
+                    "question": "Sie demonstrieren ... Gleichberechtigung.",
+                    "answer": "für"
+                },
+                {
+                    "verb": "raten zu",
+                    "question": "Ich rate dir, ... einem Arzt zu gehen.",
+                    "answer": "zu"
+                },
+                {
+                    "verb": "raten zu",
+                    "question": "Er rät uns, ... früh zu investieren.",
+                    "answer": "zu"
+                },
+                {
+                    "verb": "reagieren auf",
+                    "question": "Er reagiert nicht ... meine Fragen.",
+                    "answer": "auf"
+                },
+                {
+                    "verb": "reagieren auf",
+                    "question": "Sie reagiert sehr empfindlich ... Kritik.",
+                    "answer": "auf"
+                },
+                {
+                    "verb": "reden über",
+                    "question": "Wir reden ... unsere Pläne für die Zukunft.",
+                    "answer": "über"
+                },
+                {
+                    "verb": "reden über",
+                    "question": "Sie reden oft ... ihre Kindheit.",
+                    "answer": "über"
+                },
+                {
+                    "verb": "sagen zu",
+                    "question": "Was sagst du ... meinem Vorschlag?",
+                    "answer": "zu"
+                },
+                {
+                    "verb": "sagen zu",
+                    "question": "Sie sagt nichts ... seinem Verhalten.",
+                    "answer": "zu"
+                },
+                {
+                    "verb": "schreiben an",
+                    "question": "Ich schreibe einen Brief ... meinen Freund.",
+                    "answer": "an"
+                },
+                {
+                    "verb": "schreiben an",
+                    "question": "Sie schreibt eine E-Mail ... ihren Professor.",
+                    "answer": "an"
+                },
+                {
+                    "verb": "sorgen für",
+                    "question": "Du musst ... deine Gesundheit sorgen.",
+                    "answer": "für"
+                },
+                {
+                    "verb": "sorgen für",
+                    "question": "Er sorgt immer ... gute Stimmung.",
+                    "answer": "für"
+                },
+                {
+                    "verb": "sorgen (sich) um",
+                    "question": "Ich sorge mich ... deine Sicherheit.",
+                    "answer": "um"
+                }
+            ]
+
+    ]
+    }
+</script>
+</body>
+</html>
