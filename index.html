@@ -34,7 +34,7 @@
         var userInput = document.getElementById('user-input').value;
         const resultDiv = document.getElementById('result');
 
-        if (userInput == data[currentQuestion].answer) {
+        if (userInput.toString() == data[currentQuestion].answer.toString()) {
             resultDiv.textContent = 'Right!';
             if (resultDiv.classList.contains('result-wrong')) {
                 resultDiv.classList.remove('result-wrong');
