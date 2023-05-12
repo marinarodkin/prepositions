@@ -12,6 +12,8 @@
 <div id="result"></div>
 <div id="score"></div>
 <div id="review"></div>
+<button id="restart-button" style="display: none;">Start Again</button>
+
 
 <script>
     const data = getData()
@@ -34,7 +36,7 @@
         var userInput = document.getElementById('user-input').value;
         const resultDiv = document.getElementById('result');
 
-        if (userInput == data[currentQuestion].answer) {
+        if (userInput.toString() == data[currentQuestion].answer.toString()) {
             resultDiv.textContent = 'Right!';
             if (resultDiv.classList.contains('result-wrong')) {
                 resultDiv.classList.remove('result-wrong');
@@ -64,18 +66,43 @@
             document.getElementById('question').textContent = data[currentQuestion].question;
             document.getElementById('user-input').value = '';
         } else {
-            document.getElementById('question').textContent = 'Game Over. Your final score is ' + correctAnswers + ' right, ' + incorrectAnswers + ' wrong.';
-            document.getElementById('user-input').style.display = 'none';
-            document.getElementById('ok-button').style.display = 'none';
-
-            let wrongAnswersList = '<h2>Review these sentences:</h2><ul>';
-            wrongAnswers.forEach(function (item) {
-                wrongAnswersList += '<li>' + item.question.replace('...', item.answer) + '</li>';
-            });
-            wrongAnswersList += '</ul>';
-            document.getElementById('review').innerHTML = wrongAnswersList;
+            endGame(incorrectAnswers);
         }
     }
+
+    function endGame(incorrectAnswers) {
+        document.getElementById('question').textContent = 'Game Over. Your final score is ' + correctAnswers + ' right, ' + incorrectAnswers + ' wrong.';
+        document.getElementById('user-input').style.display = 'none';
+        document.getElementById('ok-button').style.display = 'none';
+        document.getElementById('restart-button').style.display = 'block';
+
+        let wrongAnswersList = '<h2>Review these sentences:</h2><ul>';
+        wrongAnswers.forEach(function (item) {
+            wrongAnswersList += '<li>' + item.question.replace('...', item.answer) + '</li>';
+        });
+        document.getElementById('result').textContent = '';
+        wrongAnswersList += '</ul>';
+        document.getElementById('review').innerHTML = wrongAnswersList;
+    }
+
+    document.getElementById('restart-button').addEventListener('click', function () {
+        // Reset all variables
+        correctAnswers = 0;
+        totalAnswers = 0;
+        wrongAnswers = [];
+        currentQuestion = 0;
+
+        // Reset the UI
+        document.getElementById('question').textContent = data[currentQuestion].question;
+        document.getElementById('score').textContent = '';
+        document.getElementById('result').textContent = '';
+        document.getElementById('review').textContent = '';
+        document.getElementById('user-input').value = '';
+        document.getElementById('user-input').style.display = 'inline-block';
+        document.getElementById('ok-button').style.display = 'inline-block';
+        document.getElementById('restart-button').style.display = 'none';
+    });
+
 
     document.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
